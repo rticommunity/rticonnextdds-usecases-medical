@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\src\Idl\alarm.idl">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">start "generator" /D ..\src\Idl "$(NDDSHOME)\scripts\rtiddsgen"  alarm.idl -replace -language C++ -namespace -d ..\..\src\Generated</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating .cxx files from alarm.idl ... </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)..\Generated\%(Filename).h;%(RootDir)%(Directory)..\Generated\%(Filename).cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.h;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Support.h;%(RootDir)%(Directory)..\Generated\%(Filename)Support.cxx</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\Idl\ice.idl">
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)..\Generated\%(Filename).h;%(RootDir)%(Directory)..\Generated\%(Filename).cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.h;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Support.h;%(RootDir)%(Directory)..\Generated\%(Filename)Support.cxx;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating .cxx files from ice.idl ... </Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">start "Generating from IDL" /D..\src\Idl "$(NDDSHOME)\scripts\rtiddsgen" ice.idl -replace -language C++ -namespace -d ..\..\src\Generated</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\src\Idl\patient.idl">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">start "Generating from IDL" /D..\src\Idl "$(NDDSHOME)\scripts\rtiddsgen" patient.idl -replace -language C++ -namespace -d ..\..\src\Generated</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating .cxx files from patient.idl ... </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)..\Generated\%(Filename).h;%(RootDir)%(Directory)..\Generated\%(Filename).cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.h;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Support.h;%(RootDir)%(Directory)..\Generated\%(Filename)Support.cxx;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Generated\alarm.cxx" />
+    <ClCompile Include="..\src\Generated\alarmPlugin.cxx" />
+    <ClCompile Include="..\src\Generated\alarmSupport.cxx" />
+    <ClCompile Include="..\src\Generated\ice.cxx" />
+    <ClCompile Include="..\src\Generated\icePlugin.cxx" />
+    <ClCompile Include="..\src\Generated\iceSupport.cxx" />
+    <ClCompile Include="..\src\Generated\patient.cxx" />
+    <ClCompile Include="..\src\Generated\patientPlugin.cxx" />
+    <ClCompile Include="..\src\Generated\patientSupport.cxx" />
+    <ClCompile Include="..\src\Generated\profiles.cxx" />
+    <ClCompile Include="..\src\Generated\profilesPlugin.cxx" />
+    <ClCompile Include="..\src\Generated\profilesSupport.cxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\Generated\alarm.h" />
+    <ClInclude Include="..\src\Generated\alarmPlugin.h" />
+    <ClInclude Include="..\src\Generated\alarmSupport.h" />
+    <ClInclude Include="..\src\Generated\ice.h" />
+    <ClInclude Include="..\src\Generated\icePlugin.h" />
+    <ClInclude Include="..\src\Generated\iceSupport.h" />
+    <ClInclude Include="..\src\Generated\patient.h" />
+    <ClInclude Include="..\src\Generated\patientPlugin.h" />
+    <ClInclude Include="..\src\Generated\patientSupport.h" />
+    <ClInclude Include="..\src\Generated\profiles.h" />
+    <ClInclude Include="..\src\Generated\profilesPlugin.h" />
+    <ClInclude Include="..\src\Generated\profilesSupport.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\src\Idl\profiles.idl">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">start "generator" /D ..\src\Idl "$(NDDSHOME)\scripts\rtiddsgen"  profiles.idl -replace -language C++ -namespace -d ..\..\src\Generated</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating .cxx files from profiles.idl ... </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)..\Generated\%(Filename).h;%(RootDir)%(Directory)..\Generated\%(Filename).cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.h;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Support.h;%(RootDir)%(Directory)..\Generated\%(Filename)Support.cxx</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E287142F-0D1E-49BF-B3BC-A218C1D1629F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>SharedDataTypes</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>$(Configuration)\i86Win32VS2010\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <CustomBuildBeforeTargets>
+    </CustomBuildBeforeTargets>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(Configuration)\i86Win32VS2010\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>RTI_WIN32;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(NDDSHOME)\include;$(NDDSHOME)\include\ndds</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>
+      </Message>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>RTI_WIN32;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(NDDSHOME)\include;$(NDDSHOME)\include\ndds</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
+    </Lib>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
