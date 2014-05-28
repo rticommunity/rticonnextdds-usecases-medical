@@ -12,8 +12,17 @@ damages arising out of the use or inability to use the software.
 	
 	<property environment="env"/>
 	
+	<condition property="rtiddsgen.path" value="rtiddsgen.bat">
+		<os family="windows"/>
+	</condition>
+	<condition property="rtiddsgen.path" value="rtiddsgen">
+		<os family="unix"/>
+	</condition>
+
+	<fail unless="rtiddsgen.path">No rtiddsgen path set for OS!</fail>
+	
 	<target name="build">
-		<exec executable="${env.NDDSHOME}/scripts/rtiddsgen" dir="../Idl">
+		<exec executable="${env.NDDSHOME}/scripts/${rtiddsgen.path}" dir="../Idl">
 			<arg value="-replace"/>
 			<arg value="-namespace"/>
 			<arg value="-d"/>
@@ -22,7 +31,7 @@ damages arising out of the use or inability to use the software.
 			<arg value="Java"/>
 			<arg value="alarm.idl"/>
 		</exec>
-		<exec executable="${env.NDDSHOME}/scripts/rtiddsgen" dir="../Idl">
+		<exec executable="${env.NDDSHOME}/scripts/${rtiddsgen.path}" dir="../Idl">
 			<arg value="-replace"/>
 			<arg value="-namespace"/>
 			<arg value="-d"/>
@@ -31,7 +40,7 @@ damages arising out of the use or inability to use the software.
 			<arg value="Java"/>
 			<arg value="../Idl/ice.idl"/>
 		</exec>
-		<exec executable="${env.NDDSHOME}/scripts/rtiddsgen" dir="../Idl">
+		<exec executable="${env.NDDSHOME}/scripts/${rtiddsgen.path}" dir="../Idl">
 			<arg value="-replace"/>
 			<arg value="-namespace"/>
 			<arg value="-d"/>
@@ -40,7 +49,7 @@ damages arising out of the use or inability to use the software.
 			<arg value="Java"/>
 			<arg value="../Idl/patient.idl"/>
 		</exec>
-		<exec executable="${env.NDDSHOME}/scripts/rtiddsgen" dir="../Idl">
+		<exec executable="${env.NDDSHOME}/scripts/${rtiddsgen.path}" dir="../Idl">
 			<arg value="-replace"/>
 			<arg value="-namespace"/>
 			<arg value="-d"/>
