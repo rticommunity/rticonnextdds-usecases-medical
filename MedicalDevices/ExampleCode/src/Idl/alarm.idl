@@ -13,6 +13,7 @@ damages arising out of the use or inability to use the software.
 module com {
 module rti {
 module medical {
+module generated {
 
 // Topic used to send patient alarms
 const string AlarmTopic = "com::rti::medical::Alarm";
@@ -39,6 +40,7 @@ struct Alarm
 	sequence<ice::Numeric, MAX_PATIENT_DEVICES> device_alarm_values;
 };
 
+};
 };
 };
 };

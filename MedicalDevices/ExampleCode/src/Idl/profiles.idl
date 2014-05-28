@@ -12,6 +12,7 @@ damages arising out of the use or inability to use the software.
 module com {
 module rti {
 module medical {
+module generated {
 
 const string ICE_QOS_LIBRARY = "rti_ice_Library";
 
@@ -23,6 +24,8 @@ const string QOS_PROFILE_STREAMING = "StreamingData";
 const string QOS_PROFILE_ALARM = "Alarms";
 
 const string QOS_PROFILE_PATIENT_DEVICES = "PatientDeviceProfile";
+
+};
 };
 };
 };

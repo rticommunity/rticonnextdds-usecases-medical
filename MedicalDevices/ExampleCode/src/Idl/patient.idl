@@ -13,6 +13,7 @@ damages arising out of the use or inability to use the software.
 module com {
 module rti {
 module medical {
+module generated {
 
 // Topic used to send patient-device mapping data
 const string DevicePatientMappingTopic = 
@@ -36,6 +37,7 @@ struct DevicePatientMapping
 
 };
 
+};
 };
 };
 };

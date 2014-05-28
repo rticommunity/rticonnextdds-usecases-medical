@@ -2,7 +2,7 @@
 (c) 2005-2014 Copyright, Real-Time Innovations, Inc.  All rights reserved.    	                             
 RTI grants Licensee a license to use, modify, compile, and create derivative works 
 of the Software.  Licensee has the right to distribute object form only for use with RTI 
-products.  The Software is provided “as is”, with no warranty of any type, including 
+products.  The Software is provided ï¿½as isï¿½, with no warranty of any type, including 
 any warranty for fitness for any purpose. RTI is under no obligation to maintain or 
 support the Software.  RTI shall not be liable for any incidental or consequential 
 damages arising out of the use or inability to use the software.
@@ -36,12 +36,12 @@ public class ICEDisplay extends JFrame {
 	
 	ICEDisplay() {
 		super("ListDemo");
+		
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
 		_mainPanel = new JPanel(new BorderLayout());
 
 		_listModel = new DefaultListModel<String>();
-		_listModel.addElement("Test");
 		_list = new JList<String>(_listModel);
 		_list.setVisibleRowCount(5);
 		
@@ -61,8 +61,8 @@ public class ICEDisplay extends JFrame {
 
 	
 	public void addAlarmString(String alarmString) {
-//		_listModel.addElement(alarmString);
-		_listModel.insertElementAt(alarmString, 0);
+
+		_listModel.insertElementAt(alarmString, _listModel.size());
 	}
 	
 	public static void main(String[] args) {
