@@ -7,11 +7,13 @@ any warranty for fitness for any purpose. RTI is under no obligation to maintain
 support the Software.  RTI shall not be liable for any incidental or consequential 
 damages arising out of the use or inability to use the software.
 **********************************************************************************************/
-#include "../CommonInfrastructure/DDSTypeWrapper.h"
+#include <iostream>
 #include "DDSNetworkInterface.h"
 #include "BedsideSupervisor.h"
+#include "../CommonInfrastructure/DDSTypeWrapper.h"
 #include "../Generated/alarmSupport.h"
 #include "../Generated/iceSupport.h"
+
 
 using namespace ice;
 using namespace std;
@@ -119,9 +121,15 @@ void BedsideSupervisor::MonitorPatients()
 int main(int argc, char *argv[])
 {
 
-	BedsideSupervisor *supervisor = new BedsideSupervisor();
-	while (true)
+	try 
 	{
-		supervisor->MonitorPatients();
+		BedsideSupervisor *supervisor = new BedsideSupervisor();
+		while (true)
+		{
+			supervisor->MonitorPatients();
+		}
+	} catch (string message)
+	{
+		cout << "Application exception: " << message << endl;
 	}
 }

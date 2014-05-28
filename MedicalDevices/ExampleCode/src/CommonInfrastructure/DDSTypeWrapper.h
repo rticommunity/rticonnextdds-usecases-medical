@@ -27,7 +27,7 @@ class DdsAutoType : public T
 public:
 
 	// --- Constructor type for your generated data type ---
-    DdsAutoType<T>() 
+	DdsAutoType<T>() 
 	{
         if (T::TypeSupport::initialize_data(this) != DDS_RETCODE_OK) 
 		{
