@@ -22,6 +22,7 @@ public:
 
 private:
 		DDSNetworkInterface *_ddsNetworkInterface;
-		std::map<com::rti::medical::PatientId, 
-			std::tuple<DdsAutoType<ice::Numeric>, DdsAutoType<ice::Numeric> > > _patientLastReadings;
+		std::map<com::rti::medical::generated::PatientId, 
+			std::tuple<DdsAutoType<ice::Numeric>, DdsAutoType<ice::Numeric> > > 
+					_patientLastReadings;
 };

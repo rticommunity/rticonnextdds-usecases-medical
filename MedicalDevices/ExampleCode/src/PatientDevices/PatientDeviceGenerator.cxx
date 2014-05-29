@@ -17,7 +17,7 @@ damages arising out of the use or inability to use the software.
 #include "DDSPatientDeviceInterface.h"
 
 using namespace std;
-using namespace com::rti::medical;
+using namespace com::rti::medical::generated;
 
 
 void PrintHelp();

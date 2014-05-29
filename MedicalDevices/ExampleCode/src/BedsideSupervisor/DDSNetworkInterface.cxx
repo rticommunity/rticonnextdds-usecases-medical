@@ -21,7 +21,7 @@ damages arising out of the use or inability to use the software.
 
 using namespace DDS;
 using namespace ice;
-using namespace com::rti::medical;
+using namespace com::rti::medical::generated;
 
 // ----------------------------------------------------------------------------
 // This creates the DDSNetworkInterface object.  
@@ -571,7 +571,7 @@ PatientDevicesReader::~PatientDevicesReader()
 //      of one, so only the latest patient information for this device will 
 //      be in the queue.
 void PatientDevicesReader::GetPatient(ice::UniqueDeviceIdentifier deviceId, 
-		com::rti::medical::PatientId *patientId)
+		PatientId *patientId)
 {
 
 	// Create a placeholder with only the key field filled in.  This will be
@@ -707,7 +707,7 @@ AlarmWriter::AlarmWriter(DDSNetworkInterface *ddsInterface,
 
 // ----------------------------------------------------------------------------
 // TODO: Comments
-void AlarmWriter::PublishAlarm(DdsAutoType<com::rti::medical::Alarm> &alarm)
+void AlarmWriter::PublishAlarm(DdsAutoType<Alarm> &alarm)
 {
 	InstanceHandle_t handle = DDS_HANDLE_NIL;
 	bool handleSet = false;
@@ -736,7 +736,7 @@ void AlarmWriter::PublishAlarm(DdsAutoType<com::rti::medical::Alarm> &alarm)
 
 // ----------------------------------------------------------------------------
 // TODO: Is this the right term?  Remove alarm?
-void AlarmWriter::DeleteAlarm(DdsAutoType<com::rti::medical::Alarm> &alarm)
+void AlarmWriter::DeleteAlarm(DdsAutoType<Alarm> &alarm)
 {
 	InstanceHandle_t handle = DDS_HANDLE_NIL;
 	

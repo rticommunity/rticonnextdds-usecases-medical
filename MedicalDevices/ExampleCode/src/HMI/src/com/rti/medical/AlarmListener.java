@@ -9,6 +9,10 @@ damages arising out of the use or inability to use the software.
 **********************************************************************************************/
 package com.rti.medical;
 
+import ice.Numeric;
+
+import java.util.Vector;
+
 import com.rti.medical.generated.Alarm;
 
 class AlarmListener implements SampleListener<Alarm> {
@@ -24,11 +28,23 @@ class AlarmListener implements SampleListener<Alarm> {
 	
 	@Override
 	public void processSample(Alarm sample) {
-		_display.addAlarmString(new String(
-				"Patient: " +
-				sample.patient_id + " Alarm: " +
-				sample.alarmKind.toString()));
+		Vector<String> alarmData = new Vector<String>();
+		alarmData.add(Integer.toString(sample.patient_id));
+		alarmData.add(sample.alarmKind.toString());
 		
+		String columnData = new String();
+		for (int i = 0; i < sample.device_alarm_values.size(); i++) {
+			Numeric deviceNumericData = 
+					(Numeric)sample.device_alarm_values.get(i);
+			columnData += "DeviceID: ";
+			columnData += deviceNumericData.unique_device_identifier;
+			columnData += " Value: ";
+			columnData += deviceNumericData.value;
+			columnData += " ";
+		}
+		alarmData.add(columnData);
+		
+		_display.addOrUpdateAlarmData(alarmData);
 	}
 	
 }

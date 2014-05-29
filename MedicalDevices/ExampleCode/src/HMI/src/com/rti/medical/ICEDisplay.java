@@ -10,14 +10,15 @@ damages arising out of the use or inability to use the software.
 package com.rti.medical;
 
 import java.awt.BorderLayout;
+import java.util.Iterator;
+import java.util.Vector;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import com.rti.medical.chart.ECGChart;
 
@@ -26,26 +27,29 @@ public class ICEDisplay extends JFrame {
 	private JLabel _alarmLabel;
 	
 	// This keeps its own list of Alarms.
-	private DefaultListModel<String> _listModel;
+	private DefaultTableModel _tableModel;
 	
-	private JList<String> _list;
+	private JTable _table;
 
 	private static String _alarmLabelString = "Alarms";
 
 	private JPanel _mainPanel;
 	
 	ICEDisplay() {
-		super("ListDemo");
+		super("Patient Alarms");
 		
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
 		_mainPanel = new JPanel(new BorderLayout());
 
-		_listModel = new DefaultListModel<String>();
-		_list = new JList<String>(_listModel);
-		_list.setVisibleRowCount(5);
+		_tableModel = new DefaultTableModel();
+		_tableModel.addColumn("Patient ID");
+		_tableModel.addColumn("Alarm Kind");
+		_tableModel.addColumn("Device IDs");
+		_table = new JTable(_tableModel);
+		_table.setVisible(true);
 		
-		JScrollPane listScrollPane = new JScrollPane(_list);
+		JScrollPane listScrollPane = new JScrollPane(_table);
 
 		_mainPanel.add(listScrollPane, BorderLayout.CENTER);		
 		
@@ -60,9 +64,26 @@ public class ICEDisplay extends JFrame {
 	}
 
 	
-	public void addAlarmString(String alarmString) {
+	public void addOrUpdateAlarmData(Vector<String> alarmDetails) {
 
-		_listModel.insertElementAt(alarmString, _listModel.size());
+		boolean isUpdate = false;
+		for (int i = 0; i < _tableModel.getRowCount(); i++) {
+			if (_tableModel.getValueAt(i, 0) == alarmDetails.get(0)) {
+				for (int j = 0; j < alarmDetails.size(); j++) {
+					_tableModel.setValueAt(alarmDetails.get(j), i, j);
+					_tableModel.fireTableRowsUpdated(i, i);
+					isUpdate = true;
+					break;
+				}
+			}	
+		}
+		
+		if (!isUpdate) {
+			int rowNum = _tableModel.getRowCount();
+			_tableModel.insertRow(rowNum, alarmDetails);
+			_tableModel.fireTableRowsInserted(rowNum, rowNum);
+		}
+		
 	}
 	
 	public static void main(String[] args) {

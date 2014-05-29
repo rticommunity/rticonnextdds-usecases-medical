@@ -10,7 +10,7 @@ damages arising out of the use or inability to use the software.
 #include "DDSPatientDeviceInterface.h"
 #include "../Generated/profiles.h"
 
-using namespace com::rti::medical;
+using namespace com::rti::medical::generated;
 
 // ----------------------------------------------------------------------------
 // The DDSPatientDevicePubInterface is the network interface to the whole 

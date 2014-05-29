@@ -68,12 +68,15 @@ public:
 	// Uses DDS interface to send a patient-device efficiently over the network
 	// or shared memory to interested applications subscribing to 
 	// patient-device information.
-	bool Publish(DdsAutoType<com::rti::medical::DevicePatientMapping> data);
+	bool Publish(
+			DdsAutoType<com::rti::medical::generated::DevicePatientMapping> 
+				data);
 
 	// --- Deletes the patient-device mapping---
 	// "Deletes" the patient-device mapping from the system - removing the DDS  
 	// instance from all applications.
-	bool Delete(DdsAutoType<com::rti::medical::DevicePatientMapping> data);
+	bool Delete(DdsAutoType<com::rti::medical::generated::DevicePatientMapping>
+				data);
 
 private:
 	// --- Private members ---
@@ -82,7 +85,7 @@ private:
 	DDSCommunicator *_communicator;
 
 	// Device-patient mapping publisher specific to this application
-	com::rti::medical::DevicePatientMappingDataWriter *_writer;
+	com::rti::medical::generated::DevicePatientMappingDataWriter *_writer;
 };
 
 #endif

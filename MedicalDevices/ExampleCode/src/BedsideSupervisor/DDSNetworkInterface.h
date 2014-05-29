@@ -187,7 +187,7 @@ public:
 	// to know which patient is being monitored by a device when it is 
 	// interested in it.  It queries the middleware queue by patient ID.
 	void GetPatient(ice::UniqueDeviceIdentifier deviceId, 
-		com::rti::medical::PatientId *patientId);
+		com::rti::medical::generated::PatientId *patientId);
 
 	// --- Wake up the reader thre if it is waiting on data ---
 	void NotifyWakeup();
@@ -199,7 +199,7 @@ private:
 	DDSNetworkInterface *_ddsInterface;
 
 	// The DDS DataReader of which devices monitor which patients 
-	com::rti::medical::DevicePatientMappingDataReader *_reader;
+	com::rti::medical::generated::DevicePatientMappingDataReader *_reader;
 
 	// The mechanisms that cause a thread to wait until patient device 
 	// monitoring data becomes available, and to be woken up when the data 
@@ -225,18 +225,18 @@ public:
 	// --- Destructor --- 
 	~AlarmWriter();
 
-	// TODO: change namespace to be more similar to TrackData (aka, generated)
-	void PublishAlarm(DdsAutoType<com::rti::medical::Alarm> &alarm);
+	// Publish alarms
+	void PublishAlarm(DdsAutoType<com::rti::medical::generated::Alarm> &alarm);
 
-	// TODO: Is this the right term?  Remove alarm?
-	void DeleteAlarm(DdsAutoType<com::rti::medical::Alarm> &alarm);
+	// Remove alarm if it is not longer valid
+	void DeleteAlarm(DdsAutoType<com::rti::medical::generated::Alarm> &alarm);
 
 private:
 	// Contains all the components needed to create the DataWriter
 	DDSNetworkInterface *_ddsInterface;
 
 	// DataWriter that sends Alarm updates 
-	com::rti::medical::AlarmDataWriter *_alarmWriter;
+	com::rti::medical::generated::AlarmDataWriter *_alarmWriter;
 
 };
 

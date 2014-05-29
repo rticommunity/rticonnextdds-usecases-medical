@@ -9,6 +9,7 @@
 <mapAttribute key="org.eclipse.debug.core.environmentVariables">
 <mapEntry key="LD_LIBRARY_PATH" value="/media/sf_rose3/rti/linux/RTI/ndds.5.1.0/lib/x64Linux3.xgcc4.6.3jdk"/>
 <mapEntry key="NDDSHOME" value="/media/sf_rose3/rti/linux/RTI/ndds.5.1.0"/>
+<mapEntry key="PATH" value="c:\program files\rti\5.1.0\ndds.5.1.0\lib\i86Win32jdk"/>
 </mapAttribute>
 <listAttribute key="org.eclipse.debug.ui.favoriteGroups">
 <listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
