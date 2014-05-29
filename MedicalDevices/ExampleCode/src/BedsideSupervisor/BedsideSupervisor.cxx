@@ -121,6 +121,10 @@ void BedsideSupervisor::MonitorPatients()
 int main(int argc, char *argv[])
 {
 
+	cout << "Monitoring patients' devices over RTI Connext DDS, sending " 
+		<< "alarms when multiple" << endl << "devices have out-of-range values" 
+		<< endl;
+
 	try 
 	{
 		BedsideSupervisor *supervisor = new BedsideSupervisor();

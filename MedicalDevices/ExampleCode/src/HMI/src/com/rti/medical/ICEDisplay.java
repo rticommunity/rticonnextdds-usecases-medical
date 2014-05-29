@@ -68,13 +68,14 @@ public class ICEDisplay extends JFrame {
 
 		boolean isUpdate = false;
 		for (int i = 0; i < _tableModel.getRowCount(); i++) {
-			if (_tableModel.getValueAt(i, 0) == alarmDetails.get(0)) {
+			if (_tableModel.getValueAt(i, 0).equals(alarmDetails.get(0))) {
 				for (int j = 0; j < alarmDetails.size(); j++) {
 					_tableModel.setValueAt(alarmDetails.get(j), i, j);
 					_tableModel.fireTableRowsUpdated(i, i);
 					isUpdate = true;
-					break;
 				}
+				
+				break;
 			}	
 		}
 		
