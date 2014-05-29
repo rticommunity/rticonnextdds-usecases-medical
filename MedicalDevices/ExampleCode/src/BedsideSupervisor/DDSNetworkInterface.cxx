@@ -189,7 +189,6 @@ NumericReader::NumericReader(DDSNetworkInterface *ddsInterface,
 
 	// Creating a DataReader
 	// This DataReader will receive the numeric device data.
-	// TODO: Describe how this will be used (i.e., kept in the queue, etc.)
 	DataReader *reader = sub->create_datareader_with_profile(topic, 
 		qosLibrary.c_str(),
 		qosProfile.c_str(), 
@@ -296,14 +295,13 @@ void NumericReader::WaitForNumerics(
 	// How long to block for data at a time
 	DDS_Duration_t timeout = {1,0};
 
-	// Process flight plans if they exist, and do not wait for another
-	// notification of new data
+	// Process device numeric data if it has already arrived
 	if (true == ProcessNumericData(numericUpdated, numericDeleted))
 	{
 		return;
 	}
 
-	// Block thread for flight plan data to arrive
+	// Block thread for device numeric data to arrive
 	DDS_ReturnCode_t retcode = _waitSet->wait(activeConditions, timeout);
 
 	// Normal to time out 
@@ -327,17 +325,12 @@ void NumericReader::WaitForNumerics(
 
 }
 
-// TODO: Update comment
 // This method is taking data from the middleware's queue.
 //
 // In this example, we remove the data from the middleware's queue by calling
-// take().  We do this to illustrate the common case where the data must be
-// changed from one format (the network format) to another (the format that the
-// radar library expects to receive its flight plan data).
-// If the application is able to use the data directly without converting it to
-// a different format, you can call read().  This leaves the data in the queue,
-// and lets the application access it without having to copy it.
-
+// take().  This loans a sequence of data from the middleware to the 
+// application.  The application processes that data, and then must call
+// return_loan() to give that memory back to the middleware.
 bool NumericReader::ProcessNumericData(
 	std::vector< DdsAutoType<Numeric> > *updatedNumerics,
 	std::vector< DdsAutoType<Numeric> > *deletedNumerics) 
@@ -370,12 +363,9 @@ bool NumericReader::ProcessNumericData(
 			throw errss.str();
 		}
 
-		// TODO:  Update this comment based on QoS for streaming
-		// Note, based on the QoS profile (history = keep last, depth = 1) and the 
-		// fact that we modeled devices as separate instances, we can assume there
-		// is only one entry per device.  So if a numeric update for a particular 
-		// flight has been changed 10 times, we will  only be maintaining the most 
-		// recent update to that flight plan in the middleware queue.
+		// Note, based on the QoS profile (history = keep last, depth = 100) and the 
+		// fact that we modeled devices as separate instances, we can have a queue
+		// with as many as 100 of the most recent updates per-device.
 		for (int i = 0; i < numericSequence.length(); i++) 
 		{
 			// Return a value of true that numeric updates have been received
@@ -384,7 +374,7 @@ bool NumericReader::ProcessNumericData(
 			// Data may not be valid if this is a notification that an instance
 			// has changed state.  In other words, this could be a notification 
 			// that a writer called "dispose" to notify the other applications 
-			// that the flight plan has moved to a dispose state.
+			// that the device numeric data is no longer valid.
 			if (sampleInfoSequence[i].valid_data) 
 			{
 				// Making copies of this type into a vector controlled by the 
@@ -583,10 +573,10 @@ void PatientDevicesReader::GetPatient(ice::UniqueDeviceIdentifier deviceId,
 	const DDS_InstanceHandle_t handle =
 		_reader->lookup_instance(devicePatientMapping);
 
-	// Not having a flight plan associated with this radar track is a normal 
-	// case in this example application.  In a real-world application you may
-	// want to throw an exception or return an error in the case where a flight
-	// appears that has no associated flight plan.
+	// It is possible that we do not have a patient associated with this 
+	// particular device, yet, and that is not an error condition in this
+	// application.  A real application may want to handle this with an 
+	// exception.
 	if (DDS_InstanceHandle_is_nil(&handle))
 	{
 		return;
@@ -595,12 +585,13 @@ void PatientDevicesReader::GetPatient(ice::UniqueDeviceIdentifier deviceId,
 	DevicePatientMappingSeq devicePatientMappingSeq;
 	SampleInfoSeq infoSeq;
 
-	// Reading just the data for the flight plan we are interested in
+	// Reading the data for only the device-patient mapping we are 
+	// interested in
 	_reader->read_instance(devicePatientMappingSeq, infoSeq, 
 			DDS_LENGTH_UNLIMITED,
 			handle);
 
-
+	// If there is a device-patient mapping for this device
 	if (devicePatientMappingSeq.length() > 0)
 	{
 
@@ -706,13 +697,16 @@ AlarmWriter::AlarmWriter(DDSNetworkInterface *ddsInterface,
 }
 
 // ----------------------------------------------------------------------------
-// TODO: Comments
+// This method publishes an Alarm over DDS (over shared memory or the network)
+// to one or more subscribers.  An Alarm is sent with QoS configured for state
+// data, which means a single alarm is active for a patient at any given time.
 void AlarmWriter::PublishAlarm(DdsAutoType<Alarm> &alarm)
 {
 	InstanceHandle_t handle = DDS_HANDLE_NIL;
 	bool handleSet = false;
 
-	// TODO:  Explain concept of an instance
+	// In DDS, an instance represents a logical object that is being updated.
+	// In this case, an alarm is modeled as an object per-patient.
 	// You can register the instance handle to get better 
 	// throughput - however, this mostly makes sense if you are keeping
 	// an object in your application where you can attach the instance
@@ -735,7 +729,10 @@ void AlarmWriter::PublishAlarm(DdsAutoType<Alarm> &alarm)
 }
 
 // ----------------------------------------------------------------------------
-// TODO: Is this the right term?  Remove alarm?
+// This method allows an application to remove an alarm from the system. This
+// application is a simple example, and deletes alarms when all devices are 
+// showing normal values.  A real system might require input from a nurse or 
+// more complex logic before deleting an alarm from the system.
 void AlarmWriter::DeleteAlarm(DdsAutoType<Alarm> &alarm)
 {
 	InstanceHandle_t handle = DDS_HANDLE_NIL;
@@ -743,7 +740,10 @@ void AlarmWriter::DeleteAlarm(DdsAutoType<Alarm> &alarm)
 	// Retrieve the handle of the instance we were disposing
 	handle = _alarmWriter->lookup_instance(alarm);
 
-	// TODO:  Explain concept of an instance in this context
+
+	// In DDS, an instance represents a logical object that is being updated.
+	// In this case, an alarm is modeled as an object per-patient.
+	// You can register the instance handle to get better 
 
 	// Note that DDS has two ways to indicate that an instance has gone away
 	// it can unregister the instance or dispose it.  Also, by default when

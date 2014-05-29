@@ -59,7 +59,6 @@ module ice {
   };
 
 
-  /* TODO: Connectivity objective?? */
   struct DeviceConnectivityObjective {
     UniqueDeviceIdentifier unique_device_identifier; //@key
     boolean connected;
@@ -162,7 +161,7 @@ module ice {
 
 
   // ----------------------------------------------------------------------- //
-// TODO: Assumes all instances of a given metric have the same alarm settings
+// Assumes all instances of a given metric have the same alarm settings
 // is this true?
   struct AlarmSettings {
     UniqueDeviceIdentifier unique_device_identifier; //@key

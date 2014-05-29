@@ -14,16 +14,18 @@ damages arising out of the use or inability to use the software.
 #include "../Generated/alarmSupport.h"
 #include "../Generated/iceSupport.h"
 
+void PrintHelp();
 
 using namespace ice;
 using namespace std;
 using namespace com::rti::medical::generated;
 
-BedsideSupervisor::BedsideSupervisor()
+BedsideSupervisor::BedsideSupervisor(bool multicastAvailable)
 {
-	// TODO: Command-line parameters to decide whether multicast is enabled or not
+	// Create the DDS network interface that contains readers and writers of
+	// the data that this bedside supervisor receives and sends.
 	_ddsNetworkInterface = 
-		new DDSNetworkInterface(true);
+		new DDSNetworkInterface(multicastAvailable);
 
 }
 
@@ -52,17 +54,15 @@ void BedsideSupervisor::MonitorPatients()
 			std::tuple< DdsAutoType<Numeric>, DdsAutoType<Numeric> > readings = 
 				_patientLastReadings[id];
 
-
-
 			// Note: there may be metric IDs in the system that are not important
 			// for what the bedside supervisor is monitoring.
 			if (0 == strcmp(updatedNumericValues[i].metric_id, 
-				"MDC_PULS_OXIM_PULS_RATE")) 
+				PULSE_OXIMETER_PULSE_RATE)) 
 			{
 				std::get<0>(readings) = updatedNumericValues[i];
 			}
 			else if (0 == strcmp(updatedNumericValues[i].metric_id,
-				"MDC_PULS_RATE"))
+				PULSE_RATE))
 			{
 				std::get<1>(readings) = updatedNumericValues[i];
 			}
@@ -91,22 +91,20 @@ void BedsideSupervisor::MonitorPatients()
 		}
 		else
 		{
-			// TODO: Add patient identifier
 			DdsAutoType<Numeric> first;
 			DdsAutoType<Numeric> second;
 
-			// TODO: should be a constant
-			if (0 == strcmp(updatedNumericValues[i].metric_id, 
-				"MDC_PULS_OXIM_PULS_RATE"))
-			{
-				first = updatedNumericValues[i];
-				strcpy(second.metric_id, "MDC_PULS_RATE");
-			} else if (0 == strcmp(updatedNumericValues[i].metric_id,
-				"MDC_PULS_RATE"))
-			{
-				second = updatedNumericValues[i];
-				strcpy(second.metric_id, "MDC_PULS_OXIM_PULS_RATE");
-			}
+            if (0 == strcmp(updatedNumericValues[i].metric_id,
+                    PULSE_OXIMETER_PULSE_RATE))
+            {
+                    first = updatedNumericValues[i];
+                    strcpy(second.metric_id, PULSE_RATE);
+            } else if (0 == strcmp(updatedNumericValues[i].metric_id,
+                    PULSE_RATE))
+            {
+                    second = updatedNumericValues[i];
+                    strcpy(second.metric_id, PULSE_OXIMETER_PULSE_RATE);
+            }
 
 			_patientLastReadings[id] = 
 				std::tuple<Numeric, Numeric>(first, second);
@@ -125,15 +123,55 @@ int main(int argc, char *argv[])
 		<< "alarms when multiple" << endl << "devices have out-of-range values" 
 		<< endl;
 
+	// Process arguments
+	bool multicastAvailable = true;
+	for (int i = 0; i < argc; i++)
+	{
+		if (0 == strcmp(argv[i], "--no-multicast"))
+		{
+			multicastAvailable = false;
+		} else if (0 == strcmp(argv[i], "--help"))
+		{
+			PrintHelp();
+			return 0;
+		} else if (i > 0)
+		{
+			// If we have a parameter that is not the first one, and is not 
+			// recognized, return an error.
+			cout << "Bad parameter: " << argv[i] << endl;
+			PrintHelp();
+			return -1;
+		}
+
+	}
+
 	try 
 	{
-		BedsideSupervisor *supervisor = new BedsideSupervisor();
+		// Create the new bedside supervisor class
+		BedsideSupervisor *supervisor = 
+			new BedsideSupervisor(multicastAvailable);
+
 		while (true)
 		{
+			// Monitor patients
 			supervisor->MonitorPatients();
 		}
+
 	} catch (string message)
 	{
 		cout << "Application exception: " << message << endl;
 	}
+}
+
+void PrintHelp()
+{
+	cout << "Valid options are: " << endl;
+	cout << 
+		"    --no-multicast" <<
+		"                 Do not use multicast " << 
+		"(note you must edit XML" << endl <<
+		"                                   " <<
+		"config to include IP addresses)" 
+		<< endl;
+
 }

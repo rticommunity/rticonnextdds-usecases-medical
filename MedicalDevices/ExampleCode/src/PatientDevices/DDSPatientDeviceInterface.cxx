@@ -46,9 +46,6 @@ DDSPatientDevicePubInterface::DDSPatientDevicePubInterface(
 
 	_communicator = new DDSCommunicator();
 
-	// Tune the radar for low latency.  The two QoS profiles are 
-	// defined in radar_profiles_multicast.xml and 
-	// radar_profiles_no_multicast.xml
 	std::vector<std::string> xmlFiles;
 
 	// Adding the XML files that contain profiles used by this application
@@ -58,6 +55,10 @@ DDSPatientDevicePubInterface::DDSPatientDevicePubInterface(
 	std::string participantProfile;
 	std::string participantLibrary;
 
+	// Configuring this application for multicast or no multicast.  Note that
+	// if you have no multicast, you will have to edit the XML QoS 
+	// configuration to add the IP addresses of applications you want to 
+	// discover and communicate with.
 	if (multicastAvailable) 
 	{
 		participantProfile = QOS_PROFILE_PARTICIPANT;

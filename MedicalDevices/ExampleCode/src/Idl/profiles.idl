@@ -8,21 +8,29 @@ any warranty for fitness for any purpose. RTI is under no obligation to maintain
 support the Software.  RTI shall not be liable for any incidental or consequential 
 damages arising out of the use or inability to use the software.
 **********************************************************************************************/
-// TODO: comment this!
+
 module com {
 module rti {
 module medical {
 module generated {
 
+// This file contains the constant names of the QoS profiles used by patient 
+// monitoring applications.
+
+// The QoS library that contains profiles used by patient monitoring apps.
 const string ICE_QOS_LIBRARY = "rti_ice_Library";
 
+// Bedside supervisor QoS profile names
 const string QOS_PROFILE_PARTICIPANT = "BedsideSupervisor";
 const string QOS_PROFILE_PARTICIPANT_NO_MULTICAST = "BedsideSupervisorNoMulticast";
 
+// Streaming data profile name
 const string QOS_PROFILE_STREAMING = "StreamingData";
 
+// Alarm QoS profile name
 const string QOS_PROFILE_ALARM = "Alarms";
 
+// Patient-device mapping QoS profile name
 const string QOS_PROFILE_PATIENT_DEVICES = "PatientDeviceProfile";
 
 };

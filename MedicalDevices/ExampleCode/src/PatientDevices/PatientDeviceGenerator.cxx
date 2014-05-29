@@ -23,35 +23,26 @@ using namespace com::rti::medical::generated;
 void PrintHelp();
 
 // ------------------------------------------------------------------------- //
-//
-//
-// This application creates a number of flight plans, based on the argument to
-// the application.  It creates the flight plans for a variety of airlines, and
-// sends them.  
-//
-// The  data is modeled as RTI Connext DDS "state data," meaning:
-//   1) the data is modeled to have a key field which differentiates individual
-//      flight plans.  This key field is the flight ID.
-//   ...and that it is sent:
-//   1) Reliably
-//   2) Durably - meaning that this application can write a flight plan, and
-//      even if the subscribing applications do not exist, yet, they will be
-//      notified of all flight plans as soon as they create the corresponding
-//      DataReader.
-//   3) With a history set to: kind = keep last, depth = 1.  This means that 
-//      just the most recent update to each flight plan will be sent to 
-//      DataReaders at startup.  
-//      Note:  THIS HISTORY SETTING IS NOT APPROPRIATE FOR STRICT RELIABLITY.
-//      If you were to rapidly update the same flight plan many times, it is 
-//      possible that some updates would be overwritten.  This guarantees 
-//      delivery of the _most recent_ update to the flight plan.
+// This application sends patient-device mapping information over RTI 
+// Connext DDS. This is a simple application that uses pre-configured data
+// for two patients.  
+// 
+// It sends the device-patient mapping for these two patients with the QoS 
+// that is used for state data, meaning that this data is:
+//    - Sent just once by the application
+//    - Reliably delivered to current applications interested in this data
+//    - Re-sent automatically by the middleware to any interested late-joining 
+//      applications.
 //
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[])
 {
 
+	// Simple application with two patients hard-coded.
 	int numPatients = 2;
+
+	// Process the command-line arguments
 	bool multicastAvailable = true;
 	for (int i = 0; i < argc; i++)
 	{
@@ -73,29 +64,33 @@ int main(int argc, char *argv[])
 
 	}
 
+	// Create a mapping between patients and devices
 	std::map<int, std::vector<std::string> > patientDeviceMappings;
 
+	// Preconfigured data
 	std::vector<std::string> patient1Devices;
-	patient1Devices.push_back(std::string("n0j89ZfYPdtwe97R3XPMEWYtfvH16dOo4bBR"));
-	patient1Devices.push_back(std::string("W9gDZCV57mnjhMSN3yJayZDQRGzc8dipICcZ"));
-
+	patient1Devices.push_back(
+		std::string("n0j89ZfYPdtwe97R3XPMEWYtfvH16dOo4bBR"));
+	patient1Devices.push_back(
+		std::string("W9gDZCV57mnjhMSN3yJayZDQRGzc8dipICcZ"));
 	patientDeviceMappings[0] = patient1Devices;
-	
-
-	std::vector<std::string> patient2Devices;
-	patient2Devices.push_back(std::string("v6a29kIQPqjvp25N8TANEWYtfvH16d3u4sdD"));
-	patient2Devices.push_back(std::string("B1SLmfV20qnJautN7ObxmSNVIOum8dipICcZ"));
+		std::vector<std::string> patient2Devices;
+	patient2Devices.push_back(
+		std::string("v6a29kIQPqjvp25N8TANEWYtfvH16d3u4sdD"));
+	patient2Devices.push_back(
+		std::string("B1SLmfV20qnJautN7ObxmSNVIOum8dipICcZ"));
 
 	patientDeviceMappings[1] = patient2Devices;
 
 	try 
 	{
 
+		// --------------------------------------------------------------------
 		// This is the network interface for this application - this is what
-		// actually sends the flight plan information over the transport 
-		// (shared memory or over the network).  Look into this class to see
-		// what you need to do to implement an RTI Connext DDS application that
-		// writes data.
+		// actually sends the patient-device mapping information over the 
+		// transport (shared memory or over the network).  Look into this class
+		// to see what you need to do to implement an RTI Connext DDS 
+		// application that writes data.
 		DDSPatientDevicePubInterface patientDevicePub(multicastAvailable);
 
 
