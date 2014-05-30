@@ -1,0 +1,66 @@
+<!--
+(c) 2005-2014 Copyright, Real-Time Innovations, Inc.  All rights reserved.
+RTI grants Licensee a license to use, modify, compile, and create derivative works
+of the Software.  Licensee has the right to distribute object form only for use with RTI
+products.  The Software is provided “as is”, with no warranty of any type, including
+any warranty for fitness for any purpose. RTI is under no obligation to maintain or
+support the Software.  RTI shall not be liable for any incidental or consequential
+damages arising out of the use or inability to use the software. 
+-->
+
+<project name="AlarmHMI" default="build" basedir=".">
+	
+	<property environment="env"/>
+	
+	<condition property="rtiddsgen.path" value="rtiddsgen.bat">
+		<os family="windows"/>
+	</condition>
+	<condition property="rtiddsgen.path" value="rtiddsgen">
+		<os family="unix"/>
+	</condition>
+
+	<fail unless="rtiddsgen.path">No rtiddsgen path set for OS!</fail>
+	
+	<target name="build">
+		<exec executable="${env.NDDSHOME}/scripts/${rtiddsgen.path}" dir="../Idl">
+			<arg value="-replace"/>
+			<arg value="-namespace"/>
+			<arg value="-d"/>
+			<arg value="../HMI/src"/>
+			<arg value="-language"/>
+			<arg value="Java"/>
+			<arg value="alarm.idl"/>
+		</exec>
+		<exec executable="${env.NDDSHOME}/scripts/${rtiddsgen.path}" dir="../Idl">
+			<arg value="-replace"/>
+			<arg value="-namespace"/>
+			<arg value="-d"/>
+			<arg value="../HMI/src"/>
+			<arg value="-language"/>
+			<arg value="Java"/>
+			<arg value="../Idl/ice.idl"/>
+		</exec>
+		<exec executable="${env.NDDSHOME}/scripts/${rtiddsgen.path}" dir="../Idl">
+			<arg value="-replace"/>
+			<arg value="-namespace"/>
+			<arg value="-d"/>
+			<arg value="../HMI/src"/>
+			<arg value="-language"/>
+			<arg value="Java"/>
+			<arg value="../Idl/patient.idl"/>
+		</exec>
+		<exec executable="${env.NDDSHOME}/scripts/${rtiddsgen.path}" dir="../Idl">
+			<arg value="-replace"/>
+			<arg value="-namespace"/>
+			<arg value="-d"/>
+			<arg value="../HMI/src"/>
+			<arg value="-language"/>
+			<arg value="Java"/>
+			<arg value="../Idl/profiles.idl"/>
+		</exec>
+	</target>
+	<target name="compile">
+		<mkdir dir="../HMI/bin"/>
+		<javac srcdir="../HMI/src" destdir="../HMI/bin"/>
+	</target>
+</project>

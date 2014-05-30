@@ -1,0 +1,39 @@
+
+/*********************************************************************************************
+(c) 2005-2014 Copyright, Real-Time Innovations, Inc.  All rights reserved.    	                             
+RTI grants Licensee a license to use, modify, compile, and create derivative works 
+of the Software.  Licensee has the right to distribute object form only for use with RTI 
+products.  The Software is provided “as is”, with no warranty of any type, including 
+any warranty for fitness for any purpose. RTI is under no obligation to maintain or 
+support the Software.  RTI shall not be liable for any incidental or consequential 
+damages arising out of the use or inability to use the software.
+**********************************************************************************************/
+
+module com {
+module rti {
+module medical {
+module generated {
+
+// This file contains the constant names of the QoS profiles used by patient 
+// monitoring applications.
+
+// The QoS library that contains profiles used by patient monitoring apps.
+const string ICE_QOS_LIBRARY = "rti_ice_Library";
+
+// Bedside supervisor QoS profile names
+const string QOS_PROFILE_PARTICIPANT = "BedsideSupervisor";
+const string QOS_PROFILE_PARTICIPANT_NO_MULTICAST = "BedsideSupervisorNoMulticast";
+
+// Streaming data profile name
+const string QOS_PROFILE_STREAMING = "StreamingData";
+
+// Alarm QoS profile name
+const string QOS_PROFILE_ALARM = "Alarms";
+
+// Patient-device mapping QoS profile name
+const string QOS_PROFILE_PATIENT_DEVICES = "PatientDeviceProfile";
+
+};
+};
+};
+};
