@@ -10,28 +10,25 @@ damages arising out of the use or inability to use the software.
 package com.rti.medical;
 
 import java.awt.BorderLayout;
-import java.util.Iterator;
 import java.util.Vector;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import com.rti.medical.chart.ECGChart;
-
 public class ICEDisplay extends JFrame {
 
-	private JLabel _alarmLabel;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	// This keeps its own list of Alarms.
 	private DefaultTableModel _tableModel;
 	
 	private JTable _table;
-
-	private static String _alarmLabelString = "Alarms";
 
 	private JPanel _mainPanel;
 	
@@ -87,12 +84,5 @@ public class ICEDisplay extends JFrame {
 		
 	}
 	
-	public static void main(String[] args) {
-
-		ECGChart chart = new ECGChart("ICE Display");
-		chart.drawChart();
-		chart.pack();
-		chart.setVisible(true);
-	}
 
 }
