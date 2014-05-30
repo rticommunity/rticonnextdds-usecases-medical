@@ -27,6 +27,7 @@ import com.rti.dds.subscription.ViewStateKind;
 import com.rti.dds.topic.Topic;
 import com.rti.dds.util.Sequence;
 
+// TODO: Better comments
 // A class that receives data of type T.
 //
 // 
@@ -34,6 +35,7 @@ import com.rti.dds.util.Sequence;
 //
 public class GenericDataReader<T> {
 
+	// --- Private members --- //
 	private final DDSCommunicator _communicator;
 	private final DataReader _reader;
 	private final WaitSet _waitSet;
@@ -104,7 +106,6 @@ public class GenericDataReader<T> {
 			ConditionSeq activeConditions = new ConditionSeq();
 			_waitSet.wait(activeConditions, timeToWait);
 			
-			// TODO: Iterate over other conditions ?
 			if (activeConditions.get(0) == _statusCondition) {
 				takeData();
 			}

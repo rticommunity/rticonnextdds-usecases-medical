@@ -59,4 +59,8 @@ damages arising out of the use or inability to use the software.
 			<arg value="../Idl/profiles.idl"/>
 		</exec>
 	</target>
+	<target name="compile">
+		<mkdir dir="../HMI/bin"/>
+		<javac srcdir="../HMI/src" destdir="../HMI/bin"/>
+	</target>
 </project>
