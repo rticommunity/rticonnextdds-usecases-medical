@@ -22,7 +22,7 @@
 ARCH=i86Linux2.6gcc4.4.5
 
 CXX = g++
-CXXFLAGS = -DRTI_UNIX -DRTI_LINUX -m32
+CXXFLAGS = -DRTI_UNIX -DRTI_LINUX -m32 -std=c++0x
 CXXLD = g++
 CXXLDFLAGS = -m32 -static-libgcc
 SYSLIBS = -ldl -lnsl -lm -lpthread -lrt
