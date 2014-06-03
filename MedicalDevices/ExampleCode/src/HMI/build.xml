@@ -61,6 +61,12 @@ damages arising out of the use or inability to use the software.
 	</target>
 	<target name="compile">
 		<mkdir dir="../HMI/bin"/>
-		<javac srcdir="../HMI/src" destdir="../HMI/bin"/>
+		<javac srcdir="../HMI/src" destdir="../HMI/bin">
+			<classpath>
+				<fileset dir="${env.NDDSHOME}/class/" id="id">
+			    	<include name="nddsjava.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
 	</target>
 </project>
