@@ -14,17 +14,17 @@
 #
 # - To enable debugging information, set the Makefile variable 'DEBUG' to '1'.
 # Example:
-#   make -f make/Makefile.x64Linux3.xgcc4.6.3 DEBUG=1
+#   make -f make/Makefile.i86Linux2.6gcc4.4.5 DEBUG=1
 
 
 # Defines required Make variables. They will be used in the Makefile.common
 # to define the rules to define the build process for this application.
-ARCH=x64Linux3.xgcc4.6.3
+ARCH=i86Linux2.6gcc4.4.5
 
 CXX = g++
-CXXFLAGS = -DRTI_UNIX -DRTI_LINUX -std=c++0x 
+CXXFLAGS = -DRTI_UNIX -DRTI_LINUX -m32 -std=c++0x
 CXXLD = g++
-CXXLDFLAGS = -static-libgcc
+CXXLDFLAGS = -m32 -static-libgcc
 SYSLIBS = -ldl -lnsl -lm -lpthread -lrt
 
 # The rest of the rules are in the 'Makefile.common'
