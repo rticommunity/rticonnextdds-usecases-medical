@@ -4,10 +4,10 @@ filename=$0
 script_dir=`dirname $filename`
 executable_name="rtireplay"
 
-if [ -f $REPLAY_HOME/scripts/$executable_name ]
+if [ -f "$REPLAY_HOME/scripts/$executable_name" ]
 then
-    cd $script_dir/../replay
-    $REPLAY_HOME/scripts/$executable_name \
+    cd "$script_dir/../replay"
+    "$REPLAY_HOME/scripts/$executable_name" \
         -cfgFile device_replay.xml \
         -cfgName replayDevice
 else

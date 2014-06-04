@@ -3,11 +3,12 @@
 filename=$0
 script_dir=`dirname $filename`
 executable_name="PatientDeviceGenerator"
-bin_dir=${script_dir}/../objs/x64Linux3.xgcc4.6.3/PatientDevices
+platform=`uname`
+bin_dir=$script_dir/../objs/$platform/PatientDevices
 
-if [ -f $bin_dir/$executable_name ]
+if [ -f "$bin_dir/$executable_name" ]
 then
-    cd $bin_dir
+    cd "$bin_dir"
     ./$executable_name $*
 else
     echo "***************************************************************"
@@ -15,6 +16,6 @@ else
     echo $bin_dir
     echo ""
     echo Please, try to recompile the application using the command:
-    echo " $ make -f make/Makefile.x64Linux3.xgcc4.6.3"
+    echo " $ make -f make/Makefile.<architecture>"
     echo "***************************************************************"
 fi

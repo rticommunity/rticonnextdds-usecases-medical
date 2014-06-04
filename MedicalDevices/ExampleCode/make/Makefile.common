@@ -46,6 +46,8 @@ all:
 endif
 endif
 
+# Get plaform name from the system
+PLATFORM = $(shell uname)
 
 # Define the sources and NDDS search path
 INCLUDES = -Isrc/CommonInfrastructure -Isrc/Generated -I$(NDDSHOME)/include \
@@ -112,18 +114,18 @@ HEADERS_IDL = src/Generated/alarm.h      \
           src/Generated/profilesSupport.h
 
 
-DIRECTORIES   = objs.dir objs/$(ARCH).dir objs/$(ARCH)/BedsideSupervisor.dir \
-                objs/$(ARCH)/PatientDevices.dir  \
-                objs/$(ARCH)/Common.dir
+DIRECTORIES   = objs.dir objs/$(PLATFORM).dir objs/$(PLATFORM)/BedsideSupervisor.dir \
+                objs/$(PLATFORM)/PatientDevices.dir  \
+                objs/$(PLATFORM)/Common.dir
 SOURCES_NODIR = $(notdir $(COMMONSRC)) $(notdir $(SOURCES_IDL))
-COMMONOBJS    = $(SOURCES_NODIR:%.cxx=objs/$(ARCH)/Common/%.o)
+COMMONOBJS    = $(SOURCES_NODIR:%.cxx=objs/$(PLATFORM)/Common/%.o)
 EXEC          = BedsideSupervisor
 
 BEDSIDESUPSRC_NODIR = $(notdir $(BEDSIDESUPSRC))
-BEDSIDESUPOBJS    = $(BEDSIDESUPSRC_NODIR:%.cxx=objs/$(ARCH)/BedsideSupervisor/%.o) $(COMMONOBJS)
+BEDSIDESUPOBJS    = $(BEDSIDESUPSRC_NODIR:%.cxx=objs/$(PLATFORM)/BedsideSupervisor/%.o) $(COMMONOBJS)
 
 PATIENTDEVICESRC_NODIR = $(notdir $(PATIENTDEVICESRC))
-PATIENTDEVOBJS = $(PATIENTDEVICESRC_NODIR:%.cxx=objs/$(ARCH)/PatientDevices/%.o) $(COMMONOBJS)
+PATIENTDEVOBJS = $(PATIENTDEVICESRC_NODIR:%.cxx=objs/$(PLATFORM)/PatientDevices/%.o) $(COMMONOBJS)
 PATIENTDEVICEEXEC      = PatientDeviceGenerator
 
 
@@ -132,32 +134,32 @@ PATIENTDEVICEEXEC      = PatientDeviceGenerator
 ###############################################################################
 $(ARCH): BedsideSupervisor PatientDevices 
 
-BedsideSupervisor: $(DIRECTORIES) $(BEDSIDESUPOBJS) $(EXEC:%=objs/$(ARCH)/BedsideSupervisor/%.o) \
-	$(EXEC:%=objs/$(ARCH)/BedsideSupervisor/%.out)
+BedsideSupervisor: $(DIRECTORIES) $(BEDSIDESUPOBJS) $(EXEC:%=objs/$(PLATFORM)/BedsideSupervisor/%.o) \
+	$(EXEC:%=objs/$(PLATFORM)/BedsideSupervisor/%.out)
 
 
-PatientDevices: $(PATIENTDEVOBJS) $(@:%=objs/$(ARCH)/PatientDevices/%.o) \
-	 $(PATIENTDEVICEEXEC:%=objs/$(ARCH)/PatientDevices/%.out)
+PatientDevices: $(PATIENTDEVOBJS) $(@:%=objs/$(PLATFORM)/PatientDevices/%.o) \
+	 $(PATIENTDEVICEEXEC:%=objs/$(PLATFORM)/PatientDevices/%.out)
 
 # Building the bedside supervisor application
-objs/$(ARCH)/BedsideSupervisor/%.out: objs/$(ARCH)/BedsideSupervisor/%.o
+objs/$(PLATFORM)/BedsideSupervisor/%.out: objs/$(PLATFORM)/BedsideSupervisor/%.o
 	$(CXXLD) $(CXXLDFLAGS) -o $(@:%.out=%) $(BEDSIDESUPOBJS) $(LIBS)
 
 # Building the patient device application
-objs/$(ARCH)/PatientDevices/%.out: objs/$(ARCH)/PatientDevices/%.o
+objs/$(PLATFORM)/PatientDevices/%.out: objs/$(PLATFORM)/PatientDevices/%.o
 	$(CXXLD) $(CXXLDFLAGS) -o $(@:%.out=%) $(PATIENTDEVOBJS) $(LIBS)
 
 
-objs/$(ARCH)/Common/%.o: src/CommonInfrastructure/%.cxx $(COMMON_H)
+objs/$(PLATFORM)/Common/%.o: src/CommonInfrastructure/%.cxx $(COMMON_H)
 	$(CXX) $(CXXFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
 	
-objs/$(ARCH)/Common/%.o: src/Generated/%.cxx $(COMMON_H)
+objs/$(PLATFORM)/Common/%.o: src/Generated/%.cxx $(COMMON_H)
 	$(CXX) $(CXXFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
 
-objs/$(ARCH)/BedsideSupervisor/%.o: src/BedsideSupervisor/%.cxx $(COMMON_H) $(HEADERS_IDL)
+objs/$(PLATFORM)/BedsideSupervisor/%.o: src/BedsideSupervisor/%.cxx $(COMMON_H) $(HEADERS_IDL)
 	$(CXX) $(CXXFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
 
-objs/$(ARCH)/PatientDevices/%.o: src/PatientDevices/%.cxx $(COMMON_H)
+objs/$(PLATFORM)/PatientDevices/%.o: src/PatientDevices/%.cxx $(COMMON_H)
 	$(CXX) $(CXXFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
 
 # Rule to rebuild the generated files when the .idl file change
@@ -183,7 +185,7 @@ generate: $(SOURCES_IDL) $(HEADERS_IDL)
 # Clean target: removes the objs dir
 ###############################################################################
 clean:
-	@rm -Rf objs/$(ARCH)
+	@rm -Rf objs/$(PLATFORM)
 	@echo "Successfully deleted object and executable files for architecture $(ARCH)"
 	@echo "To delete ALL the architectures and any generated file use target 'veryclean'"
 
