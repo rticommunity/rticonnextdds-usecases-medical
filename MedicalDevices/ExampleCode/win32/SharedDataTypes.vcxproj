@@ -15,16 +15,25 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">call ..\scripts\BuildIdl.bat alarm.idl</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating .cxx files from alarm.idl ... </Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)..\Generated\%(Filename).h;%(RootDir)%(Directory)..\Generated\%(Filename).cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.h;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Support.h;%(RootDir)%(Directory)..\Generated\%(Filename)Support.cxx</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">call ..\scripts\BuildIdl.bat alarm.idl</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generating .cxx files from alarm.idl ... </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)..\Generated\%(Filename).h;%(RootDir)%(Directory)..\Generated\%(Filename).cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.h;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Support.h;%(RootDir)%(Directory)..\Generated\%(Filename)Support.cxx</Outputs>
     </CustomBuild>
     <CustomBuild Include="..\src\Idl\ice.idl">
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)..\Generated\%(Filename).h;%(RootDir)%(Directory)..\Generated\%(Filename).cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.h;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Support.h;%(RootDir)%(Directory)..\Generated\%(Filename)Support.cxx;%(Outputs)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating .cxx files from ice.idl ... </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">call ..\scripts\BuildIdl.bat ice.idl</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">call ..\scripts\BuildIdl.bat ice.idl</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generating .cxx files from ice.idl ... </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)..\Generated\%(Filename).h;%(RootDir)%(Directory)..\Generated\%(Filename).cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.h;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Support.h;%(RootDir)%(Directory)..\Generated\%(Filename)Support.cxx;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="..\src\Idl\patient.idl">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">call ..\scripts\BuildIdl.bat patient.idl</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating .cxx files from patient.idl ... </Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)..\Generated\%(Filename).h;%(RootDir)%(Directory)..\Generated\%(Filename).cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.h;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Support.h;%(RootDir)%(Directory)..\Generated\%(Filename)Support.cxx;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">call ..\scripts\BuildIdl.bat patient.idl</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generating .cxx files from patient.idl ... </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)..\Generated\%(Filename).h;%(RootDir)%(Directory)..\Generated\%(Filename).cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.h;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Support.h;%(RootDir)%(Directory)..\Generated\%(Filename)Support.cxx;%(Outputs)</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +69,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">call ..\scripts\BuildIdl.bat profiles.idl</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating .cxx files from profiles.idl ... </Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)..\Generated\%(Filename).h;%(RootDir)%(Directory)..\Generated\%(Filename).cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.h;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Support.h;%(RootDir)%(Directory)..\Generated\%(Filename)Support.cxx</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">call ..\scripts\BuildIdl.bat profiles.idl</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generating .cxx files from profiles.idl ... </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)..\Generated\%(Filename).h;%(RootDir)%(Directory)..\Generated\%(Filename).cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.h;%(RootDir)%(Directory)..\Generated\%(Filename)Plugin.cxx;%(RootDir)%(Directory)..\Generated\%(Filename)Support.h;%(RootDir)%(Directory)..\Generated\%(Filename)Support.cxx</Outputs>
     </CustomBuild>
   </ItemGroup>
   <PropertyGroup Label="Globals">
