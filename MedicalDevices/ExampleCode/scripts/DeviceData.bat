@@ -11,4 +11,9 @@ set executable_name=rtireplay
 
 cd %dir%\..\replay
 
-call %REPLAY_HOME%\scripts\%executable_name% -cfgFile device_replay.xml -cfgName replayDevice
+REM Remove quotation marks
+set REPLAY_HOME=%REPLAY_HOME:"=%
+
+
+start "ECG Replay" "%REPLAY_HOME%\scripts\%executable_name%" -cfgFile device_replay.xml -cfgName replayECGDevice
+start "Pulse Oximeter Replay" "%REPLAY_HOME%\scripts\%executable_name%" -cfgFile device_replay.xml -cfgName replayPODevice
