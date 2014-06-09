@@ -70,9 +70,9 @@ int main(int argc, char *argv[])
 	// Preconfigured data
 	std::vector<std::string> patient1Devices;
 	patient1Devices.push_back(
-		std::string("n0j89ZfYPdtwe97R3XPMEWYtfvH16dOo4bBR"));
+		std::string("o1sZLTxWBSlXPNPyvvK38UggdauMx4lbp9xE"));
 	patient1Devices.push_back(
-		std::string("W9gDZCV57mnjhMSN3yJayZDQRGzc8dipICcZ"));
+		std::string("gMz6b4SUv4qhOt70ZpF3qMuGTundJ6HPztOz"));
 	patientDeviceMappings[0] = patient1Devices;
 		std::vector<std::string> patient2Devices;
 	patient2Devices.push_back(
