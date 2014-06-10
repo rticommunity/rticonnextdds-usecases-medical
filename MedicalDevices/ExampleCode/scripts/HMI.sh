@@ -26,7 +26,7 @@ arch=`uname -m`
 # Define platforms_to_try
 case $os in
 Linux*)
-	if [ "$processor" = "x86_64" ]; then
+	if [ "$arch" = "x86_64" ]; then
 	    platforms_to_try="$x64Linux_platforms $i86Linux_platforms"
         else
 	    platforms_to_try="$i86Linux_platforms"
