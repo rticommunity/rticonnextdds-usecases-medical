@@ -39,7 +39,7 @@ esac
 # Look for $platforms_to_try in your installation
 for platform in $platforms_to_try
 do
-    if [ -x $NDDSHOME/lib/${platform}jdk ]; then
+    if [ -d $NDDSHOME/lib/${platform}jdk ]; then
 	platform_name=$platform
 	break;
     fi
