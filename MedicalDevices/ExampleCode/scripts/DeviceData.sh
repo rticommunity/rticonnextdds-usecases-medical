@@ -7,9 +7,13 @@ executable_name="rtireplay"
 if [ -f $REPLAY_HOME/scripts/$executable_name ]
 then
     cd $script_dir/../replay
-    $REPLAY_HOME/scripts/$executable_name \
+    gnome-terminal -x bash -c "$REPLAY_HOME/scripts/$executable_name \
         -cfgFile device_replay.xml \
-        -cfgName replayDevice
+        -cfgName replayECGDevice"
+    gnome-terminal -x bash -c "$REPLAY_HOME/scripts/$executable_name \
+        -cfgFile device_replay.xml \
+        -cfgName replayPODevice"
+
 else
     echo "*****************************************************************"
     echo "The REPLAY_HOME environment variable must be set to"

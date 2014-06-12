@@ -1,12 +1,14 @@
-/*********************************************************************************************
-(c) 2005-2014 Copyright, Real-Time Innovations, Inc.  All rights reserved.    	                             
-RTI grants Licensee a license to use, modify, compile, and create derivative works 
-of the Software.  Licensee has the right to distribute object form only for use with RTI 
-products.  The Software is provided “as is”, with no warranty of any type, including 
-any warranty for fitness for any purpose. RTI is under no obligation to maintain or 
-support the Software.  RTI shall not be liable for any incidental or consequential 
-damages arising out of the use or inability to use the software.
-**********************************************************************************************/
+/*******************************************************************************
+ (c) 2005-2014 Copyright, Real-Time Innovations, Inc.  All rights reserved.
+ RTI grants Licensee a license to use, modify, compile, and create derivative
+ works of the Software.  Licensee has the right to distribute object form only
+ for use with RTI products.  The Software is provided "as is", with no warranty
+ of any type, including any warranty for fitness for any purpose. RTI is under
+ no obligation to maintain or support the Software.  RTI shall not be liable for
+ any incidental or consequential damages arising out of the use or inability to
+ use the software.
+ ******************************************************************************/
+
 package com.rti.medical;
 
 import java.lang.reflect.InvocationTargetException;
@@ -23,7 +25,24 @@ import com.rti.dds.topic.Topic;
 import com.rti.dds.topic.TypeSupport;
 
 
-// TODO: Javadoc
+/** 
+ * 
+ * This class is used by the application's DDS interface to create the core 
+ * communication objects, such as the DomainParticipant, Publisher and/or 
+ * Subscriber.
+ * 
+ * The DomainParticipant is a DDS object responsible for:
+ * <ul>
+ * <li>Setting up network communications
+ * <li>Discovering other DomainParticipants within the same domain (created
+ * using the same domain ID number).
+ * <li>Discovering the DataWriters and DataReaders belonging to those 
+ * DomainParticipants
+ * </ul>
+ * 
+ * @author rose
+ *
+ */
 public class DDSCommunicator {
 
 	
@@ -60,22 +79,29 @@ public class DDSCommunicator {
 	
 	// --- Creating a DomainParticipant --- //
 
-	// A DomainParticipant starts the DDS discovery process.  It creates
-	// several threads, sends and receives discovery information over one or 
-	// more transports, and maintains an in-memory discovery database of 
-	// remote DomainParticipants, remote DataWriters, and remote DataReaders
+	/**
+	 * Creates a DomainParticipant with default QoS and domain ID 0.
+	 * 
+	 * A DomainParticipant starts the DDS discovery process.  It creates
+	 * several threads, sends and receives discovery information over one or 
+	 * more transports, and maintains an in-memory discovery database of 
+	 * remote DomainParticipants, remote DataWriters, and remote DataReaders
+	 * Quality of Service can be applied on the level of the DomainParticipant.  
+	 * This QoS controls the characteristics of:
+	 *  
+	 * <ol>
+	 * <li>Transport properties such as which type of network (UDPv4, UDPv6, 
+	 * shared memory) or which network interfaces it is allowed to use    
+	 * <li>Which applications this discovers.  By default, apps will discover
+	 * other DDS applications over multicast, loopback, and shared memory.
+	 * <li>Resource limits for the DomainParticipant
+	 * </ol>
+	 * For more information on participant QoS, see the .xml files in the 
+	 * Config directory
 
-	// Quality of Service can be applied on the level of the DomainParticipant.  
-	// This QoS controls the characteristics of:
-	// 1. Transport properties such as which type of network (UDPv4, UDPv6, 
-	//    shared memory) or which network interfaces it is allowed to use
-	// 2. Which applications this discovers.  By default, apps will discover
-	//    other DDS applications over multicast, loopback, and shared memory.
-	// 3. Resource limits for the DomainParticipant
-	//
-	// For more information on participant QoS, see the .xml files in the 
-	// Config directory
-
+	 * @return The newly-created DomainParticipant
+	 * @throws Exception
+	 */
 
 	// --------------------------------------------------------------------- //
 	// Creating a DomainParticipant with a domain ID of zero
@@ -94,7 +120,29 @@ public class DDSCommunicator {
 	}
 	
 	// --------------------------------------------------------------------- //
-	// Creates a DomainParticipant with default QoS in the specified domain
+	/**
+	 * Creates a DomainParticipant with default QoS in the specified domain
+	 * 
+	 * A DomainParticipant starts the DDS discovery process.  It creates
+	 * several threads, sends and receives discovery information over one or 
+	 * more transports, and maintains an in-memory discovery database of 
+	 * remote DomainParticipants, remote DataWriters, and remote DataReaders
+	 * Quality of Service can be applied on the level of the DomainParticipant.  
+	 * This QoS controls the characteristics of:
+	 *  
+	 * <ol>
+	 * <li>Transport properties such as which type of network (UDPv4, UDPv6, 
+	 * shared memory) or which network interfaces it is allowed to use    
+	 * <li>Which applications this discovers.  By default, apps will discover
+	 * other DDS applications over multicast, loopback, and shared memory.
+	 * <li>Resource limits for the DomainParticipant
+	 * </ol>
+	 * For more information on participant QoS, see the .xml files in the 
+	 * Config directory
+
+	 * @return The newly-created DomainParticipant
+	 * @throws Exception
+	 */	
 	public DomainParticipant createParticipant(int domain) throws Exception {
 		_participant = 
 				DomainParticipantFactory.get_instance().
@@ -112,8 +160,30 @@ public class DDSCommunicator {
 	
 	
 	// ------------------------------------------------------------------------- //
-	// Creating a DomainParticipant with a specified domain ID and specified QoS 
-	public DomainParticipant createParticipant(int domain, 
+	/**
+	 * Creates a DomainParticipant with specified QoS and domain ID.
+	 * 
+	 * A DomainParticipant starts the DDS discovery process.  It creates
+	 * several threads, sends and receives discovery information over one or 
+	 * more transports, and maintains an in-memory discovery database of 
+	 * remote DomainParticipants, remote DataWriters, and remote DataReaders
+	 * Quality of Service can be applied on the level of the DomainParticipant.  
+	 * This QoS controls the characteristics of:
+	 *  
+	 * <ol>
+	 * <li>Transport properties such as which type of network (UDPv4, UDPv6, 
+	 * shared memory) or which network interfaces it is allowed to use    
+	 * <li>Which applications this discovers.  By default, apps will discover
+	 * other DDS applications over multicast, loopback, and shared memory.
+	 * <li>Resource limits for the DomainParticipant
+	 * </ol>
+	 * For more information on participant QoS, see the .xml files in the 
+	 * Config directory
+
+	 * @return The newly-created DomainParticipant
+	 * @throws Exception
+	 */	
+	 public DomainParticipant createParticipant(int domain, 
 			String participantQosLibrary, 
 			String participantQosProfile) throws Exception {
 		
@@ -136,8 +206,30 @@ public class DDSCommunicator {
 
 
 	// --------------------------------------------------------------------- //
-	// Creating a DomainParticipant with a specified domain ID, specified QoS 
-	// file names, and specified QoS 
+	/**
+	 * Creates a DomainParticipant with default QoS and domain ID 0.
+	 * 
+	 * A DomainParticipant starts the DDS discovery process.  It creates
+	 * several threads, sends and receives discovery information over one or 
+	 * more transports, and maintains an in-memory discovery database of 
+	 * remote DomainParticipants, remote DataWriters, and remote DataReaders
+	 * Quality of Service can be applied on the level of the DomainParticipant.  
+	 * This QoS controls the characteristics of:
+	 *  
+	 * <ol>
+	 * <li>Transport properties such as which type of network (UDPv4, UDPv6, 
+	 * shared memory) or which network interfaces it is allowed to use    
+	 * <li>Which applications this discovers.  By default, apps will discover
+	 * other DDS applications over multicast, loopback, and shared memory.
+	 * <li>Resource limits for the DomainParticipant
+	 * </ol>
+	 * For more information on participant QoS, see the .xml files in the 
+	 * Config directory
+	 * 
+	 * @return The newly-created DomainParticipant
+	 * @throws Exception
+	 */
+
 	public DomainParticipant createParticipant(int domain, 
 		List<String>fileNames, 
 		String participantQosLibrary, 
@@ -177,7 +269,10 @@ public class DDSCommunicator {
 
 
 	// --------------------------------------------------------------------- //
-	// Get the DomainParticipant object 
+	/** Gets the DomainParticipant object 
+	 * 
+	 * @return the DomainParticipant object, or null if it has not been created
+	 */
 	public DomainParticipant getParticipant() {
 		return _participant;	
 	}
@@ -185,8 +280,12 @@ public class DDSCommunicator {
 	// --- Creating a Publisher --- //
 	
 	// --------------------------------------------------------------------- //
-	// Creating a Publisher object.  This is used to create type-specific 
-	// DataWriter objects in the application
+	/** Creates a Publisher object.  This is used to create type-specific 
+	 *  DataWriter objects in the application
+	 *
+	 * @return The newly-created Publisher
+	 * @throws Exception
+	 */
 	public Publisher createPublisher()	throws Exception {
 		if (getParticipant() == null) {
 			throw new Exception(
@@ -209,8 +308,14 @@ public class DDSCommunicator {
 	}
 
 	// ------------------------------------------------------------------------- //
-	// Creating a Publisher object with specified QoS.  This is used to create 
-	// type-specific DataWriter objects in the application
+	/** Creates a Publisher object with specified QoS.  This is used to create 
+	 * type-specific DataWriter objects in the application
+	 * 
+	 * @param qosLibrary
+	 * @param qosProfile
+	 * @return The newly-created Publisher
+	 * @throws Exception
+	 */
 	public Publisher createPublisher(String qosLibrary, String qosProfile) 
 			throws Exception {
 		if (getParticipant() == null) {
@@ -236,6 +341,12 @@ public class DDSCommunicator {
 	}
 	
 	// --- Getting the Publisher --- //
+	/** 
+	 * Gets the publisher object
+	 * 
+	 * @return The Publisher, or null if it was not created.
+	 * @throws Exception
+	 */
 	public Publisher getPublisher() throws Exception {
 		if (_pub == null) {
 			createPublisher();
@@ -246,8 +357,13 @@ public class DDSCommunicator {
 	// --- Creating a Subscriber --- //
 
 	// --------------------------------------------------------------------- //
-	// Creating a Subscriber object.  This is used to create type-specific 
-	// DataReader objects in the application
+	/** Creates a Subscriber object.  This is used to create type-specific 
+	 *  DataReader objects in the application
+	 *  
+	 * @return The newly-created Subscriber
+	 * @throws Exception
+	 */
+
 	public Subscriber createSubscriber() throws Exception {
 		if (getParticipant() == null) {
 			throw new Exception(
@@ -273,8 +389,14 @@ public class DDSCommunicator {
 	}
 
 	// --------------------------------------------------------------------- //
-	// Creating a Subscriber object with specified QoS.  This is used to  
-	// create type-specific DataReader objects in the application
+	/** Creates a Subscriber object with specified QoS.  This is used to  
+	 *  create type-specific DataReader objects in the application
+	 *  
+	 * @param qosLibrary
+	 * @param qosProfile
+	 * @return The newly-created Subscriber
+	 * @throws Exception
+	 */
 	public Subscriber createSubscriber(
 			String qosLibrary, String qosProfile) throws Exception {
 
@@ -302,6 +424,12 @@ public class DDSCommunicator {
 	}
 	
 	// --- Getting the Subscriber --- //
+	/**
+	 * Gets the Subscriber
+	 * 
+	 * @return The Subscriber, or null if it was not created
+	 * @throws Exception
+	 */
 	public Subscriber getSubscriber() throws Exception {
 		if (_sub == null) {
 			return createSubscriber();
@@ -310,6 +438,25 @@ public class DDSCommunicator {
 		return _sub;
 	}
 	
+	/**
+	 * Creates Topics. 
+	 * 
+	 * Topics are objects in DDS that describe the meaning of data being sent.
+	 * The data type may be simple and reusable, but the Topic gives that data
+	 * a label that explains the meaning and context of that data.  DataWriters
+	 * and DataReaders communicate when they have the same Topic names.  
+	 * 
+	 * @param topicName
+	 * @param type
+	 * @return A Topic for type T
+	 * @throws ClassNotFoundException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 * @throws InstantiationException
+	 */
     @SuppressWarnings("unchecked")
 	public <T> Topic createTopic(String topicName, Class<T> type) 
 			throws ClassNotFoundException, 
