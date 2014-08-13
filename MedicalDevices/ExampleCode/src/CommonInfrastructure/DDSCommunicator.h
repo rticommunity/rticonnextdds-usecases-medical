@@ -8,7 +8,6 @@
  any incidental or consequential damages arising out of the use or inability to
  use the software.
  ******************************************************************************/
-
 #ifndef DDS_COMMUNICATOR_H
 #define DDS_COMMUNICATOR_H
 
