@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="c:/program files/rti/5.1.0/RTI Recording Service 5.1.0/resource/schema/rti_replay.xsd">
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+     xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/5.1.0/rti_replay.xsd">
 
     <!-- ******************************************************************* -->
     <!-- Default configuration file for RTI Replay Service                   -->

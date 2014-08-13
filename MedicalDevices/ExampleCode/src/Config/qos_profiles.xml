@@ -79,7 +79,7 @@ For more information about XML QoS Profiles see Chapter 15 in the
 RTI Connext user manual.
 -->
 <dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:noNamespaceSchemaLocation="c:/Program Files/RTI/5.1.0/ndds.5.1.0/scripts/../resource/rtiddsgen/../qos_profiles_5.1.0/schema/rti_dds_qos_profiles.xsd"
+     xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/5.1.0/rti_dds_qos_profiles.xsd"
      version="5.1.0">
     <!-- QoS Library containing the QoS profile used in the generated example.
 
@@ -193,8 +193,8 @@ RTI Connext user manual.
                 <participant_name>
                     <name>Bedside Supervisor Participant</name>
                     <role_name>bedsideSupervisorRole</role_name>
-                </participant_name>\
-                <!-- The ICE framework disables shared memoruy, so these 
+                </participant_name>
+                <!-- The ICE framework disables shared memory, so these 
                      applications must do the same to communicate -->
 
                 <transport_builtin>
