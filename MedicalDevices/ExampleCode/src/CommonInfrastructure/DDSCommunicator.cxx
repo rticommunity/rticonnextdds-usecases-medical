@@ -8,7 +8,6 @@
  any incidental or consequential damages arising out of the use or inability to
  use the software.
  ******************************************************************************/
-
 #include "DDSCommunicator.h"
 
 using namespace DDS;

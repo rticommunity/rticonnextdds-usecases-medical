@@ -8,7 +8,6 @@
  any incidental or consequential damages arising out of the use or inability to
  use the software.
  ******************************************************************************/
-
 #ifndef DDS_TYPE_WRAPPER_H
 #define DDS_TYPE_WRAPPER_H
 

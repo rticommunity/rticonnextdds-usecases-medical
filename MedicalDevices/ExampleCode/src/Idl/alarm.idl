@@ -7,8 +7,7 @@
  no obligation to maintain or support the Software.  RTI shall not be liable for
  any incidental or consequential damages arising out of the use or inability to
  use the software.
-******************************************************************************/
-
+ ******************************************************************************/
 #include "patient.idl"
 
 module com {
