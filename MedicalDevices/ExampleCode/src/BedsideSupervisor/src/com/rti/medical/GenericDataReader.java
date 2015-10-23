@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import com.rti.dds.infrastructure.ConditionSeq;
 import com.rti.dds.infrastructure.Duration_t;
 import com.rti.dds.infrastructure.RETCODE_NO_DATA;
+import com.rti.dds.infrastructure.RETCODE_TIMEOUT;
 import com.rti.dds.infrastructure.StatusCondition;
 import com.rti.dds.infrastructure.StatusKind;
 import com.rti.dds.infrastructure.WaitSet;
@@ -37,7 +38,7 @@ public class GenericDataReader<T> {
 
 	// --- Private members --- //
 	private final DDSCommunicator _communicator;
-	private final DataReader _reader;
+	protected final DataReader _reader;
 	private final WaitSet _waitSet;
 	private final Sequence _dataSeq;
 	private final SampleInfoSeq _infoSeq;
@@ -104,7 +105,12 @@ public class GenericDataReader<T> {
 		if (!takeData()) {
 		
 			ConditionSeq activeConditions = new ConditionSeq();
-			_waitSet.wait(activeConditions, timeToWait);
+			
+			try {
+				_waitSet.wait(activeConditions, timeToWait);
+			} catch (RETCODE_TIMEOUT e) {
+				return;
+			}
 			
 			if (activeConditions.get(0) == _statusCondition) {
 				takeData();

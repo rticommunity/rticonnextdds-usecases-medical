@@ -7,14 +7,16 @@
 <listEntry value="1"/>
 </listAttribute>
 <mapAttribute key="org.eclipse.debug.core.environmentVariables">
-<mapEntry key="LD_LIBRARY_PATH" value="/media/sf_rose3/rti/linux/RTI/ndds.5.1.0/lib/x64Linux3.xgcc4.6.3jdk"/>
-<mapEntry key="NDDSHOME" value="/media/sf_rose3/rti/linux/RTI/ndds.5.1.0"/>
-<mapEntry key="PATH" value="c:\program files\rti\5.1.0\ndds.5.1.0\lib\i86Win32jdk"/>
+<mapEntry key="DYLD_LIBRARY_PATH" value="/Applications/rti_connext_dds-5.2.0/lib/x64Darwin12clang4.1"/>
+<mapEntry key="LD_LIBRARY_PATH" value="/media/sf_rose3/rti/linux/RTI/ndds.5.2.0/lib/x64Linux3.xgcc4.6.3jdk"/>
+<mapEntry key="NDDSHOME" value="/Applications/rti_connext_dds-5.2.0"/>
+<mapEntry key="PATH" value="c:\program files\rti_connext_dds-5.2.0\lib\i86Win32VS2010"/>
 </mapAttribute>
 <listAttribute key="org.eclipse.debug.ui.favoriteGroups">
 <listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
 <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
 </listAttribute>
+<booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.rti.medical.ICEAlarmDisplayApp"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="AlarmHMI"/>
 </launchConfiguration>

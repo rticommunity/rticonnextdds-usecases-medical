@@ -151,7 +151,7 @@ RTI Connext user manual.
                 <!-- The ICE framework disables shared memoruy, so these 
                      applications must do the same to communicate -->
                 <transport_builtin>
-                    <mask>UDPv4</mask>
+                    <!--mask>UDPv4</mask>-->
                 </transport_builtin>
 
             </participant_qos>
@@ -198,7 +198,7 @@ RTI Connext user manual.
                      applications must do the same to communicate -->
 
                 <transport_builtin>
-                    <mask>UDPv4</mask>
+                    <!--mask>UDPv4</mask>-->
                 </transport_builtin>
 
             </participant_qos>
@@ -243,7 +243,7 @@ RTI Connext user manual.
             <!-- The ICE framework disables shared memoruy, so these 
                      applications must do the same to communicate -->
             <transport_builtin>
-                <mask>UDPv4</mask>
+                <!--mask>UDPv4</mask>-->
             </transport_builtin>
 
         </participant_qos>
@@ -269,7 +269,7 @@ RTI Connext user manual.
                 <!-- The ICE framework disables shared memoruy, so these 
                      applications must do the same to communicate -->
                 <transport_builtin>
-                    <mask>UDPv4</mask>
+                    <!--mask>UDPv4</mask>-->
                 </transport_builtin>
             </participant_qos>
 
@@ -293,7 +293,7 @@ RTI Connext user manual.
                 <!-- The ICE framework disables shared memoruy, so these 
                      applications must do the same to communicate -->
                 <transport_builtin>
-                    <mask>UDPv4</mask>
+                    <!--mask>UDPv4</mask>-->
                 </transport_builtin>
 
                 <!-- Unicast peers to contact other DomainParticipants -->

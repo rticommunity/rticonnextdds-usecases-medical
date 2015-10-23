@@ -8,7 +8,7 @@
  any incidental or consequential damages arising out of the use or inability to
  use the software.
  -->
-<project name="AlarmHMI" default="build" basedir=".">
+<project name="BedsideSupervisor" default="build" basedir=".">
 	
 	<property environment="env"/>
 	
@@ -26,7 +26,7 @@
 			<arg value="-replace"/>
 			<arg value="-namespace"/>
 			<arg value="-d"/>
-			<arg value="../HMI/src"/>
+			<arg value="../BedsideSupervisor/src"/>
 			<arg value="-language"/>
 			<arg value="Java"/>
 			<arg value="alarm.idl"/>
@@ -35,7 +35,7 @@
 			<arg value="-replace"/>
 			<arg value="-namespace"/>
 			<arg value="-d"/>
-			<arg value="../HMI/src"/>
+			<arg value="../BedsideSupervisor/src"/>
 			<arg value="-language"/>
 			<arg value="Java"/>
 			<arg value="../Idl/ice.idl"/>
@@ -44,7 +44,7 @@
 			<arg value="-replace"/>
 			<arg value="-namespace"/>
 			<arg value="-d"/>
-			<arg value="../HMI/src"/>
+			<arg value="../BedsideSupervisor/src"/>
 			<arg value="-language"/>
 			<arg value="Java"/>
 			<arg value="../Idl/patient.idl"/>
@@ -53,15 +53,15 @@
 			<arg value="-replace"/>
 			<arg value="-namespace"/>
 			<arg value="-d"/>
-			<arg value="../HMI/src"/>
+			<arg value="../BedsideSupervisor/src"/>
 			<arg value="-language"/>
 			<arg value="Java"/>
 			<arg value="../Idl/profiles.idl"/>
 		</exec>
 	</target>
 	<target name="compile">
-		<mkdir dir="../HMI/bin"/>
-		<javac srcdir="../HMI/src" destdir="../HMI/bin">
+		<mkdir dir="../BedsideSupervisor/bin"/>
+		<javac srcdir="../BedsideSupervisor/src" destdir="../BedsideSupervisor/bin">
 			<classpath>
 				<fileset dir="${env.NDDSHOME}/class/" id="id">
 			    	<include name="nddsjava.jar"/>

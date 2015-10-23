@@ -24,7 +24,7 @@ const string DevicePatientMappingTopic =
 // identifying a patient.
 typedef long PatientId;
 
-// Patient being monitoried by a device
+// Patient being monitored by a device
 struct DevicePatientMapping
 {
 	// Unique ID of a device

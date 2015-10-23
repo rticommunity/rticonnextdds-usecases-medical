@@ -165,11 +165,11 @@ objs/$(PLATFORM)/PatientDevices/%.o: src/PatientDevices/%.cxx $(COMMON_H)
 # Rule to rebuild the generated files when the .idl file change
 $(SOURCES_IDL) $(HEADERS_IDL): src/Idl/ice.idl src/Idl/patient.idl src/Idl/alarm.idl src/Idl/profiles.idl
 	@mkdir -p src/Generated
-	cd src/Idl && $(NDDSHOME)/scripts/rtiddsgen -namespace -d ../../src/Generated ice.idl -replace -language C++; \
-	$(NDDSHOME)/scripts/rtiddsgen -namespace -d ../../src/Generated ice.idl -replace -language C++;  \
-	$(NDDSHOME)/scripts/rtiddsgen -namespace -d ../../src/Generated patient.idl -replace -language C++; \
-	$(NDDSHOME)/scripts/rtiddsgen -namespace -d ../../src/Generated alarm.idl -replace -language C++;  \
-	$(NDDSHOME)/scripts/rtiddsgen -namespace -d ../../src/Generated profiles.idl -replace -language C++;  \
+	cd src/Idl && $(NDDSHOME)/bin/rtiddsgen -namespace -d ../../src/Generated ice.idl -replace -language C++; \
+	$(NDDSHOME)/bin/rtiddsgen -namespace -d ../../src/Generated ice.idl -replace -language C++;  \
+	$(NDDSHOME)/bin/rtiddsgen -namespace -d ../../src/Generated patient.idl -replace -language C++; \
+	$(NDDSHOME)/bin/rtiddsgen -namespace -d ../../src/Generated alarm.idl -replace -language C++;  \
+	$(NDDSHOME)/bin/rtiddsgen -namespace -d ../../src/Generated profiles.idl -replace -language C++;  \
 
 generate: $(SOURCES_IDL) $(HEADERS_IDL)
 
