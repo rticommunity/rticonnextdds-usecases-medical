@@ -63,7 +63,7 @@
 		<mkdir dir="../HMI/bin"/>
 		<javac srcdir="../HMI/src" destdir="../HMI/bin">
 			<classpath>
-				<fileset dir="${env.NDDSHOME}/class/" id="id">
+				<fileset dir="${env.NDDSHOME}/lib/java/" id="id">
 			    	<include name="nddsjava.jar"/>
 				</fileset>
 			</classpath>
