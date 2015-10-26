@@ -132,7 +132,7 @@ PATIENTDEVICEEXEC      = PatientDeviceGenerator
 ###############################################################################
 # Build Rules
 ###############################################################################
-$(ARCH): BedsideSupervisor PatientDevices 
+$(ARCH): PatientDevices 
 
 BedsideSupervisor: $(DIRECTORIES) $(BEDSIDESUPOBJS) $(EXEC:%=objs/$(PLATFORM)/BedsideSupervisor/%.o) \
 	$(EXEC:%=objs/$(PLATFORM)/BedsideSupervisor/%.out)
