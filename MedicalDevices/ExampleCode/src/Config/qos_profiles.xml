@@ -118,13 +118,10 @@ RTI Connext user manual.
             </datawriter_qos>
 
             <!-- QoS used to configure the data writer that writes reliable streaming data -->
-            <datareader_qos base_name="BuiltinQosLibExp::Pattern.ReliableStreaming">
+            <datareader_qos base_name="BuiltinQosLibExp::Generic.BestEffort">
                 <subscription_name>
                     <name>iceDataReader</name>
                 </subscription_name>
-              <durability>
-                <kind>TRANSIENT_LOCAL_DURABILITY_QOS</kind>
-              </durability>
               <liveliness>
                 <lease_duration>
                   <sec>2</sec>
@@ -240,7 +237,7 @@ RTI Connext user manual.
                 <role_name>patientDeviceMappingRole</role_name>
               </participant_name>
 
-            <!-- The ICE framework disables shared memoruy, so these 
+            <!-- The ICE framework disables shared memory, so these 
                      applications must do the same to communicate -->
             <transport_builtin>
                 <!--mask>UDPv4</mask>-->
@@ -266,7 +263,7 @@ RTI Connext user manual.
                     <role_name>bedsideSupervisorRole</role_name>
                 </participant_name>
 
-                <!-- The ICE framework disables shared memoruy, so these 
+                <!-- The ICE framework disables shared memory, so these 
                      applications must do the same to communicate -->
                 <transport_builtin>
                     <!--mask>UDPv4</mask>-->
@@ -290,7 +287,7 @@ RTI Connext user manual.
                     <role_name>bedsideSupervisorRole</role_name>
                 </participant_name>
 
-                <!-- The ICE framework disables shared memoruy, so these 
+                <!-- The ICE framework disables shared memory, so these 
                      applications must do the same to communicate -->
                 <transport_builtin>
                     <!--mask>UDPv4</mask>-->
