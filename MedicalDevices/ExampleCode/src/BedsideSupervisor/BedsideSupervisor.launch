@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/BedsideSupervisor/src/com/rti/medical/BedsideSupervisor.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<mapAttribute key="org.eclipse.debug.core.environmentVariables">
+<mapEntry key="DYLD_LIBRARY_PATH" value="/Applications/rti_connext_dds-5.2.0/lib/x64Darwin12clang4.1"/>
+<mapEntry key="LD_LIBRARY_PATH" value="/media/sf_rose3/rti/linux/RTI/ndds.5.2.0/lib/x64Linux3.xgcc4.6.3jdk"/>
+<mapEntry key="NDDSHOME" value="/Applications/rti_connext_dds-5.2.0"/>
+<mapEntry key="PATH" value="c:\program files\rti_connext_dds-5.2.0\lib\i86Win32VS2010"/>
+</mapAttribute>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.rti.medical.BedsideSupervisor"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="BedsideSupervisor"/>
+</launchConfiguration>
