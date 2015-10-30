@@ -43,10 +43,10 @@ How to Build this Code
 ----------------------
 
 On all platforms, the first thing you must do is set an environment variable 
-called NDDSHOME. This environment variable must point to the ndds.5.x.x 
-directory inside your RTI Connext DDS installation. For more information on how 
-to set an environment variable, please see the RTI Core Libraries and Utilities 
-Getting Started Guide.
+called NDDSHOME. This environment variable must point to the 
+rti_connext_dds-.5.x.x directory inside your RTI Connext DDS installation. For 
+more information on how to set an environment variable, please see the RTI 
+Core Libraries and Utilities Getting Started Guide.
 
 We will refer to the location where you unzipped the example in this document 
 as EXAMPLE_HOME.  
@@ -65,18 +65,20 @@ represent the interface to the application. The Visual Studio solution files
 are set up to automatically generate the necessary code and link against the 
 required libraries.
 
-For Java developers, an Eclipse project is located in the src\HMI directory.  
+For Java developers, an Eclipse project is located in the src\HMI directory, 
+and another project located in the src\BedsideSupervisor directory.  
 To build in Eclipse, you must follow these steps:
 	- Ensure a C++ preprocessor is in your path.  One way to do this is by 
 	  running the Visual Studio application vcvars32.bat from a command 
 	  prompt, and opening Eclipse from that same command prompt.  
 	- Ensure the NDDSHOME environment variable is set to the directory where
 	  you installed RTI Connext DDS.
-	- Import the HMI project into Eclipse
-	- Right-click on the build.xml file, and select Run As | Ant Build. This 
+	- Import the HMI and BedsideSupervisor projects into Eclipse
+	- Right-click on the build.xml files, and select Run As | Ant Build. This 
 	  will call the code generator to generate code from the .idl files.
 	- Edit the run configuration to ensure that the PATH environment variable 
-	  includes this directory: NDDSHOME\lib\i86Win32jdk
+	  includes this directory: 
+              NDDSHOME\lib\<target architecture you have installed>
 
 
 Linux Systems
@@ -89,16 +91,18 @@ gmake -f make/Makefile.<platform>
 The platform you choose will be the combination of your processor, OS, and 
 compiler version.  Right now this example only supports i86Linux2.6gcc4.5.5
 
-For Java developers, an Eclipse project is located in the src\HMI directory.  
+For Java developers, an Eclipse project is located in the src\HMI directory,
+and another project located in the src\BedsideSupervisor directory.  
 To build in Eclipse, you must follow these steps:
 	- Ensure a C++ preprocessor is in your path.
 	- Ensure the NDDSHOME environment variable is set to the directory where
 	  you installed RTI Connext DDS.
-	- Import the HMI project into Eclipse
-	- Right-click on the build.xml file, and select Run As | Ant Build. This 
+	- Import the HMI and the BedsideSupervisor projects into Eclipse
+	- Right-click on the build.xml files, and select Run As | Ant Build. This 
 	  will call the code generator to generate code from the .idl files.
 	- Edit the run configuration to ensure that the PATH environment variable 
-	  includes this directory: NDDSHOME/lib/<your architecture>jdk
+	  includes this directory: 
+              NDDSHOME/lib/<target architecture you have installed>
 
 Run the Example
 ---------------
