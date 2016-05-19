@@ -14,31 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>configuration/qos_profiles.xml</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/Config/qos_profiles.xml</locationURI>
-		</link>
-		<link>
-			<name>resources/alarm.idl</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/Idl/alarm.idl</locationURI>
-		</link>
-		<link>
-			<name>resources/ice.idl</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/Idl/ice.idl</locationURI>
-		</link>
-		<link>
-			<name>resources/patient.idl</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/Idl/patient.idl</locationURI>
-		</link>
-		<link>
-			<name>resources/profiles.idl</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/Idl/profiles.idl</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>

@@ -8,8 +8,8 @@
 </listAttribute>
 <mapAttribute key="org.eclipse.debug.core.environmentVariables">
 <mapEntry key="DYLD_LIBRARY_PATH" value="/Applications/rti_connext_dds-5.2.0/lib/x64Darwin12clang4.1"/>
-<mapEntry key="LD_LIBRARY_PATH" value="/media/sf_rose3/rti/linux/RTI/ndds.5.2.0/lib/x64Linux3.xgcc4.6.3jdk"/>
-<mapEntry key="NDDSHOME" value="/Applications/rti_connext_dds-5.2.0"/>
+<mapEntry key="LD_LIBRARY_PATH" value="/home/eval/rti_connext_dds-5.2.0/lib/x64Linux3gcc4.8.2"/>
+<mapEntry key="NDDSHOME" value="/home/eval/rti_connext_dds-5.2.0"/>
 <mapEntry key="PATH" value="c:\program files\rti_connext_dds-5.2.0\lib\i86Win32VS2010"/>
 </mapAttribute>
 <listAttribute key="org.eclipse.debug.ui.favoriteGroups">

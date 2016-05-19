@@ -39,7 +39,7 @@ esac
 # Look for $platforms_to_try in your installation
 for platform in $platforms_to_try
 do
-    if [ -d $NDDSHOME/lib/${platform}jdk ]; then
+    if [ -d $NDDSHOME/lib/${platform} ]; then
 	platform_name=$platform
 	break;
     fi
@@ -49,17 +49,17 @@ if [ "$platform_name" = "unknown" ]; then
     echo "***************************************************************"
     echo "Error: Could not find the native libraries needed to run"
     echo "$filename."
-    echo "Please examine $NDDSHOME/lib/<arch>jdk to find the libraries"
+    echo "Please examine $NDDSHOME/lib/<arch> to find the libraries"
     echo "needed."
     echo "***************************************************************"
 else
     if [ "$os" = "Darwin" ]; then
-	export DYLD_LIBRARY_PATH=$PWD:$NDDSHOME/lib/${platform}jdk
+	export DYLD_LIBRARY_PATH=$PWD:$NDDSHOME/lib/${platform}
     else
-	export LD_LIBRARY_PATH=$PWD:$NDDSHOME/lib/${platform}jdk
+	export LD_LIBRARY_PATH=$PWD:$NDDSHOME/lib/${platform}
     fi
 
-    export RTI_JAR_DIR=$NDDSHOME/class
+    export RTI_JAR_DIR=$NDDSHOME/lib/java
     
     # Run command
     cd $hmi_dir
