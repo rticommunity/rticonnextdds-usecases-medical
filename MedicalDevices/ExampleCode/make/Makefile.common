@@ -138,7 +138,7 @@ BedsideSupervisor: $(DIRECTORIES) $(BEDSIDESUPOBJS) $(EXEC:%=objs/$(PLATFORM)/Be
 	$(EXEC:%=objs/$(PLATFORM)/BedsideSupervisor/%.out)
 
 
-PatientDevices: $(PATIENTDEVOBJS) $(@:%=objs/$(PLATFORM)/PatientDevices/%.o) \
+PatientDevices: $(DIRECTORIES) $(PATIENTDEVOBJS) $(@:%=objs/$(PLATFORM)/PatientDevices/%.o) \
 	 $(PATIENTDEVICEEXEC:%=objs/$(PLATFORM)/PatientDevices/%.out)
 
 # Building the bedside supervisor application
@@ -159,7 +159,7 @@ objs/$(PLATFORM)/Common/%.o: src/Generated/%.cxx $(COMMON_H)
 objs/$(PLATFORM)/BedsideSupervisor/%.o: src/BedsideSupervisor/%.cxx $(COMMON_H) $(HEADERS_IDL)
 	$(CXX) $(CXXFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
 
-objs/$(PLATFORM)/PatientDevices/%.o: src/PatientDevices/%.cxx $(COMMON_H)
+objs/$(PLATFORM)/PatientDevices/%.o: src/PatientDevices/%.cxx $(COMMON_H) $(HEADERS_IDL)
 	$(CXX) $(CXXFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
 
 # Rule to rebuild the generated files when the .idl file change
