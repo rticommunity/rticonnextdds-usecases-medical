@@ -1,3 +1,4 @@
+![Image](https://www.rti.com/hubfs/RTI_Oct2016/Images/rti-logounit.png)  
 rticonnextdds-usecases-medical
 ==============================
 
@@ -17,8 +18,8 @@ uses of the RTI Connext DDS product, focusing on:
 
 This use case example should be a stepping stone for creating real 
 distributed applications based on RTI Connext DDS. Additional information 
-about this use case can be found on [RTI's Case + Code page](https://www.rti.com/resources/usecases)
-and in the Docs/ directory of the use case example.
+about this use case can be found on [RTI's Case + Code page](https://www.rti.com/resources/usecases/medical-devices)
+and in the README.md file of this use case example.
 
 RTI Connext DDS Overview
 ------------------------
@@ -29,3 +30,4 @@ open standard for messaging that supports the unique needs of both enterprise
 and real-time systems. Its open interfaces and advanced integration 
 capabilities slash costs across a system’s lifecycle, from initial development 
 and integration through on-going maintenance and upgrades.
+Visit the [RTI Download Page](https://www.rti.com/downloads).
